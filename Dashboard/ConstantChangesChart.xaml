@@ -18,5 +18,7 @@
             <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="80"/>
         </Grid.ColumnDefinitions>
+
+        <Button Grid.Row="0" Grid.Column="1" Click="">Start/Stop</Button>
     </Grid>
 </UserControl>
