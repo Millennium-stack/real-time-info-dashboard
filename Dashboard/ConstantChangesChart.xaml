@@ -16,13 +16,15 @@
             <RowDefinition Height="25*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="80*"/>
         </Grid.ColumnDefinitions>
 
         <Button Grid.Row="0" Grid.Column="1" Click="">Start/Stop</Button>
 
-        <lvc:AngularGauge Grid.Row="1" Grid.Column="0" FromValue="60" ToValue="90" Name="theGauge">
+        <lvc:AngularGauge Grid.Row="1" Grid.Column="0" 
+                          FromValue="60" ToValue="90" 
+                          Name="theGauge">
             <lvc:AngularGauge.Sections>
                 <lvc:AngularSection FromValue="60" ToValue="65" Fill="DarkRed"/>
                 <lvc:AngularSection FromValue="65" ToValue="70" Fill="Orange"/>
@@ -30,5 +32,27 @@
                 <lvc:AngularSection FromValue="85" ToValue="90" Fill="Orange"/>
             </lvc:AngularGauge.Sections>
         </lvc:AngularGauge>
+
+        <lvc:CartesianChart Grid.Row="1" Grid.Column="1" Grid.RowSpan="4" DisableAnimations="False" Hoverable="False" DataTooltip="{x:Null}" Name="theCC">
+            <lvc:CartesianChart.Series>
+                <lvc:LineSeries Values="{Binding CharValues}" Name="IsEfficience"
+                                PointGeometry="{x:Null}"
+                                LineSmoothness="0"
+                                StrokeThickness="2"
+                                Stroke="Black"
+                                Fill="Transparent"/>
+            </lvc:CartesianChart.Series>
+            <lvc:CartesianChart.AxisX>
+                <lvc:Axis MaxValue="{Binding AxisMax}" MinValue="{Binding AxisMin}" Unit="{Binding AxisUnit}"
+                          LabelFormatter="{Binding X_Axis_LabelFormatter}">
+                    <lvc:Axis.Separator>
+                        <lvc:Separator Step="{Binding AxisStep}"/>
+                    </lvc:Axis.Separator>
+                </lvc:Axis>
+            </lvc:CartesianChart.AxisX>
+            <lvc:CartesianChart.AxisY>
+                <lvc:Axis MinValue="0" MaxValue="270"/>
+            </lvc:CartesianChart.AxisY>
+        </lvc:CartesianChart>
     </Grid>
 </UserControl>
