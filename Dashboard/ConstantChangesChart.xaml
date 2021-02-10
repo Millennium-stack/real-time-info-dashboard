@@ -20,7 +20,7 @@
             <ColumnDefinition Width="80*"/>
         </Grid.ColumnDefinitions>
 
-        <Button Grid.Row="0" Grid.Column="1" Click="">Start/Stop</Button>
+        <Button Grid.Row="0" Grid.Column="1" Click="Button_Click">Start/Stop</Button>
 
         <lvc:AngularGauge Grid.Row="1" Grid.Column="0" 
                           FromValue="60" ToValue="90" 
@@ -35,7 +35,7 @@
 
         <lvc:CartesianChart Grid.Row="1" Grid.Column="1" Grid.RowSpan="4" DisableAnimations="False" Hoverable="False" DataTooltip="{x:Null}" Name="theCC">
             <lvc:CartesianChart.Series>
-                <lvc:LineSeries Values="{Binding CharValues}" Name="IsEfficience"
+                <lvc:LineSeries Values="{Binding chartValues}" Name="IsEfficiency"
                                 PointGeometry="{x:Null}"
                                 LineSmoothness="0"
                                 StrokeThickness="2"
