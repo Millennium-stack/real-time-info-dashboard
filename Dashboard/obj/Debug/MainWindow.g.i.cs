@@ -10,7 +10,6 @@
 //------------------------------------------------------------------------------
 
 using Dashboard;
-using LiveCharts.Wpf;
 using System;
 using System.Diagnostics;
 using System.Windows;
