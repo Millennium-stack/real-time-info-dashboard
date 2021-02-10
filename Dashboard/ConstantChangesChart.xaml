@@ -24,7 +24,7 @@
 
         <lvc:AngularGauge Grid.Row="1" Grid.Column="0" 
                           FromValue="60" ToValue="90" 
-                          Name="theGauge">
+                          Name="theGauge" Value="{Binding EngineEfficiency}">
             <lvc:AngularGauge.Sections>
                 <lvc:AngularSection FromValue="60" ToValue="65" Fill="DarkRed"/>
                 <lvc:AngularSection FromValue="65" ToValue="70" Fill="Orange"/>

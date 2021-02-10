@@ -1,28 +1,18 @@
 ﻿using CodeClinic;
 using LiveCharts;
 using LiveCharts.Configurations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.ComponentModel;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Dashboard
 {
     /// <summary>
     /// Interaction logic for ConstantChangesChart.xaml
     /// </summary>
-    public partial class ConstantChangesChart : UserControl
+    public partial class ConstantChangesChart : UserControl, INotifyPropertyChanged
     {
         public ConstantChangesChart()
         {
@@ -48,17 +38,36 @@ namespace Dashboard
         {
             // TODO: Populate the collection chartValues
 
-            string fileName = @"";
+            string fileName = @"C:\Users\Millennium Singha\Downloads\Ex_Files_Code_Clinic_C_Sharp\Ex_Files_Code_Clinic_C_Sharp\Exercise Files\Ch06\dashBoardData.csv";
 
             foreach (var ft in FactoryTelemetry.Load(fileName))
             {
                 chartValues.Add(ft);
 
+                this.EngineEfficiency = ft.Efficiency;
+
                 if (chartValues.Count > 30)
-                    chartValues.Remove(0);
+                    chartValues.RemoveAt(0);
 
                 Thread.Sleep(30);
             }
         }
+
+        private double _EngineEfficiency = 65;
+        public double EngineEfficiency {
+            get
+            {
+                return _EngineEfficiency;
+            }
+            set
+            {
+                _EngineEfficiency = value;
+                OnPropertyChanged(nameof(EngineEfficiency));
+            } 
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string name = null) =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
 }
