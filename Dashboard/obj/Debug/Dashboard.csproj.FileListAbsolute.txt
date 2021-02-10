@@ -1,0 +1,5 @@
+C:\codeClinic_c_sharp\realTimeInfo\Dashboard\obj\Debug\Dashboard.csprojAssemblyReference.cache
+C:\codeClinic_c_sharp\realTimeInfo\Dashboard\obj\Debug\MainWindow.g.cs
+C:\codeClinic_c_sharp\realTimeInfo\Dashboard\obj\Debug\App.g.cs
+C:\codeClinic_c_sharp\realTimeInfo\Dashboard\obj\Debug\Dashboard_MarkupCompile.cache
+C:\codeClinic_c_sharp\realTimeInfo\Dashboard\obj\Debug\Dashboard_MarkupCompile.lref
