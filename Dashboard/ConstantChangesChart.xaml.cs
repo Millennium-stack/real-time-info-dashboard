@@ -58,8 +58,24 @@ namespace Dashboard
             }
         }
 
+        public double AxisStep { get; set; } = TimeSpan.FromSeconds(5).Ticks;
+        public double AxisUnit { get; set; } = TimeSpan.FromSeconds(1).Ticks;
+
+        private double axisMax = tickZero + TimeSpan.FromSeconds(30).Ticks;
+        public double AxisMax { get => axisMax; set { axisMax = value; } }
+
+        private double axisMin = tickZero;
+        public double AxisMin { get => axisMin; set { axisMin = value; } }
+
+        private void AdjustAxis(long ticks)
+        {
+
+        }
+
         private double _EngineEfficiency = 65;
-        public double EngineEfficiency {
+
+        public double EngineEfficiency
+        {
             get
             {
                 return _EngineEfficiency;
@@ -68,7 +84,7 @@ namespace Dashboard
             {
                 _EngineEfficiency = value;
                 OnPropertyChanged(nameof(EngineEfficiency));
-            } 
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
