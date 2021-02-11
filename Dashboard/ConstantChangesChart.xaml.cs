@@ -28,8 +28,9 @@ namespace Dashboard
             DataContext = this;
         }
 
+        public ChartValues<FactoryTelemetry> ChartValues { get; set; } = new ChartValues<FactoryTelemetry>();
+
         private bool readingData = false;
-        private ChartValues<FactoryTelemetry> chartValues { get; set; } = new ChartValues<FactoryTelemetry>();
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             if (!readingData)
@@ -41,18 +42,20 @@ namespace Dashboard
 
         private void ReadData()
         {
-            // TODO: Populate the collection chartValues
+            // TODO: Populate the collection ChartValues
 
             string fileName = @"C:\Users\Millennium Singha\Downloads\Ex_Files_Code_Clinic_C_Sharp\Ex_Files_Code_Clinic_C_Sharp\Exercise Files\Ch06\dashBoardData.csv";
 
             foreach (var ft in FactoryTelemetry.Load(fileName))
             {
-                chartValues.Add(ft);
+                ChartValues.Add(ft);
 
                 this.EngineEfficiency = ft.Efficiency;
 
-                if (chartValues.Count > 30)
-                    chartValues.RemoveAt(0);
+                AdjustAxis(ft.TimeStamp.Ticks);
+
+                if (ChartValues.Count > 30)
+                    ChartValues.RemoveAt(0);
 
                 Thread.Sleep(30);
             }
@@ -62,14 +65,17 @@ namespace Dashboard
         public double AxisUnit { get; set; } = TimeSpan.FromSeconds(1).Ticks;
 
         private double axisMax = tickZero + TimeSpan.FromSeconds(30).Ticks;
-        public double AxisMax { get => axisMax; set { axisMax = value; } }
+        public double AxisMax { get => axisMax; set { axisMax = value; OnPropertyChanged(nameof(AxisMax));  } }
 
         private double axisMin = tickZero;
-        public double AxisMin { get => axisMin; set { axisMin = value; } }
+        public double AxisMin { get => axisMin; set { axisMin = value; OnPropertyChanged(nameof(AxisMin)); } }
 
         private void AdjustAxis(long ticks)
         {
+            var width = TimeSpan.FromSeconds(30).Ticks;
 
+            AxisMin = (ticks - tickZero < width) ? tickZero : ticks - width;
+            AxisMax = (ticks - tickZero < width) ? tickZero + width : ticks;
         }
 
         private double _EngineEfficiency = 65;
