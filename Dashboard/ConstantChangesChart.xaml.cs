@@ -54,6 +54,9 @@ namespace Dashboard
 
             foreach (var ft in FactoryTelemetry.Load(fileName))
             {
+                if (!readingData)
+                    return;
+
                 ChartValues.Add(ft);
 
                 this.EngineEfficiency = ft.Efficiency;
@@ -63,7 +66,7 @@ namespace Dashboard
                 if (ChartValues.Count > 30)
                     ChartValues.RemoveAt(0);
 
-                Thread.Sleep(30);
+                Thread.Sleep(50);
             }
         }
 
