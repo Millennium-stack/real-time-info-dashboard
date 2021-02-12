@@ -35,12 +35,16 @@
 
         <lvc:CartesianChart Grid.Row="1" Grid.Column="1" Grid.RowSpan="4" DisableAnimations="False" Hoverable="False" DataTooltip="{x:Null}" Name="theCC">
             <lvc:CartesianChart.Series>
+                <lvc:StepLineSeries Values="{Binding ChartValues}" PointGeometry="{x:Null}" StrokeThickness="2" Stroke="HotPink" Fill="Transparent" Name="lsPulse"/>
                 <lvc:LineSeries Values="{Binding ChartValues}" Name="lsEfficiency"
                                 PointGeometry="{x:Null}"
                                 LineSmoothness="0"
                                 StrokeThickness="2"
                                 Stroke="Black"
                                 Fill="Transparent"/>
+                <lvc:LineSeries Values="{Binding ChartValues}" PointGeometry="{x:Null}" StrokeThickness="1" Stroke="Red" Fill="Transparent" Name="lsRed"/>
+                <lvc:LineSeries Values="{Binding ChartValues}" PointGeometry="{x:Null}" StrokeThickness="2" Stroke="Green" Fill="Transparent" Name="lsGreen"/>
+                <lvc:LineSeries Values="{Binding ChartValues}" PointGeometry="{x:Null}" StrokeThickness="3" Stroke="Blue" Fill="Transparent" Name="lsBlue"/>
             </lvc:CartesianChart.Series>
             <lvc:CartesianChart.AxisX>
                 <lvc:Axis MaxValue="{Binding AxisMax}" MinValue="{Binding AxisMin}" Unit="{Binding AxisUnit}"
